@@ -1,0 +1,131 @@
+## Question That I need to answer when statistical test i will use
+
+-   why you choose a specific test, the logic behind it.
+-   Assumption of that test
+-   Limitation of this Test
+-   Background of this test how this test come
+-   Formula of this test, is that come or related or dependent with other test or equation
+-   for test which which element requerd from data, and how we get that element
+-   How To perform this test in R, all available option and best suitable option what? and why this option best?
+-   Explain R code and logic behind it.
+-   Simulate a dummy data and Perform This test
+-   How to interpret this est output for publication
+-   
+
+|  |  |  |
+|----|----|----|
+| Statistically Sound | স্ট্যাটিস্টিক্যালি সাউন্ড | পরিসংখ্যানগতভাবে নির্ভরযোগ্য বা সঠিক। |
+
+**I. The Philosophical & Conceptual Foundation**
+
+1)  **The "Why":** Explain the fundamental purpose of statistical hypothesis testing. Why can't we just look at sample statistics (like means or proportions) and declare a difference or relationship exists? What problem does hypothesis testing solve?
+    -   Does alternative approach have to prove sample represent population without hypothesis testing?
+
+    -   Why we take Significant level P-value as 0.05, what behind logic of it. when we take more or less?
+2)  **The Logic:** Describe the core logic of hypothesis testing (often called Null Hypothesis Significance Testing - NHST). Why do we start by assuming the *null* hypothesis is true? How does this relate to proof by contradiction?
+3)  **Inference:** What does it mean to make an "inference" about a population based on a sample? How does hypothesis testing facilitate this? What are the inherent uncertainties involved?
+4)  **Models & Reality:** How do statistical tests relate to underlying statistical models of the data-generating process? Why is understanding the model important for choosing and interpreting a test?
+
+**II. Core Components of Hypothesis Testing**
+
+5.  **Hypotheses:**
+    -   Explain the precise roles of the Null Hypothesis (H₀) and the Alternative Hypothesis (H₁ or Hₐ).
+    -   What makes a "good" (i.e., testable) hypothesis?
+    -   Describe the difference between one-tailed (directional) and two-tailed (non-directional) alternative hypotheses. When is each appropriate, and how does it affect the test?
+6.  **Test Statistic:**
+    -   What is a test statistic conceptually? What information does it synthesize from the sample data?
+    -   Explain the general idea: How does a test statistic measure the discrepancy between the sample data and what is expected under the null hypothesis? (Think signal-to-noise ratio).
+    -   Why are there different formulas for test statistics (e.g., z, t, F, χ²)? What determines which formula is used?
+7.  **Sampling Distribution:**
+    -   What is the *sampling distribution* of a test statistic? Why is it crucial for hypothesis testing?
+    -   How does the Central Limit Theorem often play a role in determining the relevant sampling distribution (especially for tests involving means)?
+    -   How does the choice of test statistic relate to its known theoretical sampling distribution (e.g., t-statistic follows a t-distribution under H₀)?
+8.  **Significance Level (α):**
+    -   Define the significance level (alpha, α). What does it represent in terms of error?
+    -   Why do we need to choose α *before* conducting the test?
+    -   What are the conventional values for α, and what are the implications of choosing a smaller or larger value?
+9.  **P-value:**
+    -   Provide a precise definition of the p-value. Explain it without using the phrase "the probability that the null hypothesis is true."
+    -   How is the p-value calculated (conceptually – relating the observed test statistic to its sampling distribution)?
+    -   Explain the decision rule: How do you use the p-value and α to decide whether to reject or fail to reject H₀?
+10. **Errors:**
+    -   Define Type I Error and Type II Error in the context of hypothesis testing. Give a real-world example illustrating both.
+    -   What is the probability of making a Type I error? How is it controlled?
+    -   What is denoted by β (beta)? What does it represent?
+    -   Explain the inherent trade-off between Type I and Type II errors. How does changing α affect β?
+11. **Statistical Power:**
+    -   Define Statistical Power (1 - β). What does it represent?
+    -   Why is high power desirable in a study?
+    -   What factors influence the power of a statistical test? (Discuss effect size, sample size, α, variance).
+    -   Explain the difference between *a priori* power analysis (planning a study) and *post hoc* power analysis (interpreting results, often criticized).
+
+**III. Choosing the Right Test: Decision Factors**
+
+12. **Research Question:** How does the specific research question (e.g., comparing means, testing association, checking proportions) guide the initial selection of a potential test?
+13. **Data Type:** Explain how the type of variables involved (Categorical: Nominal/Ordinal; Numerical: Discrete/Continuous) is a primary factor in choosing a test. Give examples (e.g., comparing means of a continuous variable vs. testing association between two categorical variables).
+14. **Number of Groups/Variables:** How does the number of groups being compared (one, two, more than two) or the number of variables being related influence test selection? (e.g., t-test vs. ANOVA).
+15. **Sample Independence/Dependence:**
+    -   Explain the difference between independent samples and dependent (paired/related) samples.
+    -   Why is this distinction critical for choosing the correct test (e.g., independent t-test vs. paired t-test)? Give examples of study designs leading to each type.
+16. **Assumptions:** Why are statistical tests based on assumptions about the data or the population it came from? What are the most common assumptions (e.g., Normality, Homogeneity of Variances, Independence of Observations)?
+17. **Parametric vs. Non-parametric:**
+    -   What is the fundamental difference between parametric and non-parametric tests?
+    -   When should you choose a non-parametric test over its parametric counterpart?
+    -   What are the potential advantages and disadvantages of using non-parametric tests (e.g., power, assumptions, type of hypothesis tested)?
+
+**IV. Specific Test Categories & Their Nuances**
+
+18. **Tests for Means (t-tests, Z-tests, ANOVA):**
+    -   When is a Z-test for a mean appropriate versus a t-test? What's the key difference (population vs. sample standard deviation)?
+    -   Explain the purpose of a one-sample t-test, an independent two-sample t-test, and a paired t-test. Describe a scenario for each.
+    -   What core question does Analysis of Variance (ANOVA) address? Why use ANOVA instead of multiple t-tests when comparing more than two group means? What problem does it avoid?
+    -   What is the F-statistic in ANOVA conceptually measuring?
+    -   If an ANOVA result is significant, what further analysis is typically needed, and why? (Introduce post-hoc tests like Tukey's HSD).
+    -   Briefly, what extensions does Two-Way ANOVA offer over One-Way ANOVA (investigating interactions)?
+19. **Tests for Proportions (Z-tests):**
+    -   How do you test a hypothesis about a single population proportion?
+    -   How do you compare proportions from two independent populations? What assumptions are needed?
+20. **Tests for Association/Independence (Chi-Squared Tests):**
+    -   What is the purpose of the Chi-Squared (χ²) Goodness-of-Fit test? Provide an example scenario.
+    -   What is the purpose of the Chi-Squared (χ²) Test for Independence (or Association)? Provide an example scenario involving a contingency table.
+    -   What is the underlying logic of the Chi-squared statistic (comparing observed vs. expected frequencies)? What constitutes an "expected" frequency?
+    -   What are the assumptions of the Chi-squared tests, particularly regarding expected cell counts? What can you do if they are violated?
+21. **Tests for Variance:**
+    -   When might you want to formally test if two populations have equal variances (e.g., Levene's test, Bartlett's test)? Why is this often done as an assumption check for other tests (like the t-test)?
+    -   What does the F-test for equality of two variances assess?
+22. **Correlation Tests:**
+    -   How do you test if a Pearson correlation coefficient (r) is statistically significantly different from zero? What are the null and alternative hypotheses?
+23. **Non-parametric Alternatives:**
+    -   For an independent two-sample comparison of central tendency when normality is violated, what is a common non-parametric alternative to the t-test (e.g., Mann-Whitney U / Wilcoxon Rank-Sum)? What hypothesis is it actually testing?
+    -   For a paired sample comparison when normality is violated, what is a common non-parametric alternative (e.g., Wilcoxon Signed-Rank Test)?
+    -   For comparing central tendency across more than two independent groups when normality/variance assumptions are violated, what is a common non-parametric alternative to ANOVA (e.g., Kruskal-Wallis Test)?
+
+**V. Interpretation, Reporting & Limitations**
+
+24. **Beyond Reject/Fail to Reject:** Why is simply stating "reject H₀" or "fail to reject H₀" often insufficient? What other information is crucial for good interpretation?
+25. **Effect Size:**
+    -   What is effect size? Why is it important to report alongside p-values?
+    -   Give examples of effect size measures for different tests (e.g., Cohen's d for t-tests, eta-squared (η²) for ANOVA, Cramer's V for Chi-squared). How do you interpret them (small, medium, large)?
+    -   Explain the difference between statistical significance (p-value) and practical significance (effect size). Can a result be statistically significant but not practically meaningful? Vice-versa?
+26. **Confidence Intervals:**
+    -   How are confidence intervals related to hypothesis tests? How can a CI for a difference (e.g., between two means) be used to reach the same conclusion as a two-tailed hypothesis test?
+    -   Why are confidence intervals often considered more informative than p-values alone?
+27. **Assumptions Revisited:**
+    -   How do you *check* the assumptions of a test (e.g., visual inspection of plots like histograms/Q-Q plots, formal tests like Shapiro-Wilk for normality or Levene's for homogeneity of variance)?
+    -   What are the consequences of violating assumptions? When are certain tests considered "robust" to violations?
+    -   What strategies can be used if assumptions are severely violated (e.g., data transformations, using non-parametric tests)?
+28. **Multiple Comparisons Problem:**
+    -   Explain the issue of alpha inflation when performing multiple hypothesis tests.
+    -   What are some common methods for correcting for multiple comparisons (e.g., Bonferroni correction, Tukey's HSD)? What is the trade-off involved in using these corrections (hint: power)?
+29. **Context is King:** Why is the interpretation of any statistical test result heavily dependent on the research context, study design, and data collection methods?
+30. **Limitations of NHST:** Discuss some common criticisms or limitations of the traditional Null Hypothesis Significance Testing framework. Are there alternative approaches (e.g., Bayesian inference)?
+
+**How to Use These Questions for Mastery:**
+
+-   **Don't just find definitions:** Explain the concepts in your own words. Use examples.
+-   **Compare and Contrast:** Actively think about how different tests relate to each other (e.g., t-test as a special case of ANOVA).
+-   **Focus on the "Why":** Always ask *why* a certain step is taken or *why* a particular assumption matters.
+-   **Practice with Scenarios:** Take sample datasets or research questions and walk through the entire process: choosing the test, stating hypotheses, checking assumptions, interpreting results (p-value, effect size, CI), and drawing conclusions in context.
+-   **Use Software, but Understand the Output:** Use R, Python, SPSS, etc., to run tests, but focus on understanding every part of the output, not just the p-value.
+
+By deeply engaging with these questions, you will move beyond rote memorization towards a flexible, critical, and truly masterful understanding of statistical tests. Good luck!
