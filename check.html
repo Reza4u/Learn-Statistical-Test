@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUCSU Connect - Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #E6007E;
+            --secondary-yellow: #F3F798;
+            --secondary-blue: #A0E7E5;
+            --text-dark: #333333;
+            --status-green: #28A745;
+            --status-blue: #007BFF;
+            --status-grey: #6C757D;
+            --card-radius: 8px;
+            --spacing-unit: 16px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            background-color: #ffffff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: var(--spacing-unit);
+        }
+        
+        header {
+            padding: 24px 0;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+        
+        .filter-section {
+            background-color: var(--secondary-yellow);
+            padding: 24px;
+            border-radius: var(--card-radius);
+            margin-bottom: 32px;
+        }
+        
+        .filter-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-dark);
+        }
+        
+        .top-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .other-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .filter-label {
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        
+        select {
+            padding: 10px 12px;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: var(--card-radius);
+            background-color: white;
+            font-size: 16px;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .daily-polls {
+            margin-bottom: 32px;
+        }
+        
+        .section-title {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .results-info {
+            background-color: var(--secondary-blue);
+            padding: 12px 20px;
+            border-radius: var(--card-radius);
+            margin-bottom: 20px;
+            font-weight: 500;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .results-count {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .polls-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .poll-card {
+            background-color: white;
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s;
+        }
+        
+        .poll-card:hover {
+            transform: translateY(-4px);
+        }
+        
+        .poll-question {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+        
+        .poll-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .poll-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 12px;
+            border-radius: var(--card-radius);
+            background-color: rgba(0,0,0,0.03);
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .poll-option:hover {
+            background-color: rgba(230, 0, 126, 0.1);
+        }
+        
+        .poll-option input[type="radio"] {
+            accent-color: var(--primary-color);
+        }
+        
+        .poll-vote-btn {
+            margin-top: 16px;
+            padding: 10px 16px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: var(--card-radius);
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        
+        .poll-vote-btn:hover {
+            background-color: #cc006f;
+        }
+        
+        .candidates-section {
+            margin-bottom: 32px;
+        }
+        
+        .candidates-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .candidate-card {
+            background-color: white;
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .candidate-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.12);
+        }
+        
+        .candidate-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+        
+        .candidate-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 16px;
+            border: 3px solid var(--secondary-blue);
+        }
+        
+        .candidate-info h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        
+        .candidate-info p {
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+        
+        .candidate-reactions {
+            display: flex;
+            justify-content: space-around;
+            margin: 16px 0;
+            padding: 12px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .reaction {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        
+        .reaction:hover {
+            transform: scale(1.1);
+        }
+        
+        .reaction i {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        
+        .reaction.heart i {
+            color: #e74c3c;
+        }
+        
+        .reaction.thumbs-up i {
+            color: var(--status-green);
+        }
+        
+        .reaction.thumbs-down i {
+            color: var(--status-grey);
+        }
+        
+        .reaction-count {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .candidate-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            font-size: 14px;
+        }
+        
+        .candidate-details span {
+            font-weight: 500;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 24px 0;
+            margin-top: 48px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+        
+        .sort-section {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        
+        .sort-label {
+            font-size: 14px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        .sort-options {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .sort-option {
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 14px;
+            font-weight: 500;
+            background-color: white;
+            border: 1px solid rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .sort-option:hover {
+            background-color: rgba(230, 0, 126, 0.1);
+            border-color: var(--primary-color);
+        }
+        
+        .sort-option.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+        
+        .stats-section {
+            margin-bottom: 32px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .stat-card {
+            background-color: white;
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+        
+        .stat-icon {
+            font-size: 36px;
+            color: var(--primary-color);
+            margin-bottom: 12px;
+        }
+        
+        .stat-value {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 8px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: var(--text-dark);
+            opacity: 0.8;
+        }
+        
+        .featured-section {
+            background-color: white;
+            border-radius: var(--card-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            padding: 24px;
+            margin-bottom: 32px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        .featured-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .featured-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .featured-view-all {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            transition: gap 0.2s;
+        }
+        
+        .featured-view-all:hover {
+            gap: 10px;
+        }
+        
+        .featured-candidates {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+        
+        .featured-candidate {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border-radius: var(--card-radius);
+            background-color: rgba(0,0,0,0.02);
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        
+        .featured-candidate:hover {
+            transform: translateY(-2px);
+            background-color: rgba(230, 0, 126, 0.05);
+        }
+        
+        .featured-candidate-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 12px;
+            border: 2px solid var(--secondary-blue);
+        }
+        
+        .featured-candidate-info {
+            flex: 1;
+        }
+        
+        .featured-candidate-name {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+        
+        .featured-candidate-post {
+            font-size: 14px;
+            color: var(--text-dark);
+            opacity: 0.7;
+        }
+        
+        .featured-candidate-stats {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 4px;
+        }
+        
+        .featured-stat {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 12px;
+            color: var(--text-dark);
+            opacity: 0.6;
+        }
+        
+        .featured-stat i {
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">DUCSU Connect</div>
+            <div class="tagline">Your platform for informed student elections</div>
+        </header>
+        
+        <section class="filter-section">
+            <h2 class="filter-title">Find Candidates</h2>
+            
+            <!-- Top Two Filters -->
+            <div class="top-filters">
+                <div class="filter-item">
+                    <label class="filter-label">Select Election</label>
+                    <select>
+                        <option>Central Election</option>
+                        <option>Hall Union Election</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label class="filter-label">Select Post</label>
+                    <select>
+                        <option>All Posts</option>
+                        <option>President</option>
+                        <option>Vice President</option>
+                        <option>General Secretary</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Other Filters -->
+            <div class="other-filters">
+                <div class="filter-item">
+                    <label class="filter-label">Session</label>
+                    <select>
+                        <option>All Sessions</option>
+                        <option>2021-22</option>
+                        <option>2022-23</option>
+                        <option>2023-24</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label class="filter-label">Hall</label>
+                    <select>
+                        <option>All Halls</option>
+                        <option>Salahuddin Hall</option>
+                        <option>Fazlul Haq Hall</option>
+                        <option>Shahidullah Hall</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label class="filter-label">Panel</label>
+                    <select>
+                        <option>All Panels</option>
+                        <option>Progressive Students' Alliance</option>
+                        <option>Student Rights Panel</option>
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label class="filter-label">Department</label>
+                    <select>
+                        <option>All Departments</option>
+                        <option>Computer Science</option>
+                        <option>Physics</option>
+                        <option>English</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Sort By Section -->
+            <div class="sort-section">
+                <span class="sort-label">Sort by:</span>
+                <div class="sort-options">
+                    <div class="sort-option active">Default</div>
+                    <div class="sort-option">CGPA (High to Low)</div>
+                    <div class="sort-option">CGPA (Low to High)</div>
+                    <div class="sort-option">Session (Newest)</div>
+                    <div class="sort-option">Session (Oldest)</div>
+                    <div class="sort-option">Popularity</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Featured Results Section -->
+        <section class="featured-section">
+            <div class="featured-header">
+                <h3 class="featured-title">Featured Candidates</h3>
+                <a href="#" class="featured-view-all">View All <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="featured-candidates">
+                <div class="featured-candidate">
+                    <img src="https://picsum.photos/seed/candidate1/200/200.jpg" alt="Candidate" class="featured-candidate-image">
+                    <div class="featured-candidate-info">
+                        <div class="featured-candidate-name">Ahmed Rahman</div>
+                        <div class="featured-candidate-post">President</div>
+                        <div class="featured-candidate-stats">
+                            <div class="featured-stat"><i class="fas fa-heart"></i> 124</div>
+                            <div class="featured-stat"><i class="fas fa-thumbs-up"></i> 89</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-candidate">
+                    <img src="https://picsum.photos/seed/candidate2/200/200.jpg" alt="Candidate" class="featured-candidate-image">
+                    <div class="featured-candidate-info">
+                        <div class="featured-candidate-name">Fatima Khan</div>
+                        <div class="featured-candidate-post">Vice President</div>
+                        <div class="featured-candidate-stats">
+                            <div class="featured-stat"><i class="fas fa-heart"></i> 98</div>
+                            <div class="featured-stat"><i class="fas fa-thumbs-up"></i> 76</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-candidate">
+                    <img src="https://picsum.photos/seed/candidate3/200/200.jpg" alt="Candidate" class="featured-candidate-image">
+                    <div class="featured-candidate-info">
+                        <div class="featured-candidate-name">Rahim Islam</div>
+                        <div class="featured-candidate-post">General Secretary</div>
+                        <div class="featured-candidate-stats">
+                            <div class="featured-stat"><i class="fas fa-heart"></i> 76</div>
+                            <div class="featured-stat"><i class="fas fa-thumbs-up"></i> 65</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-candidate">
+                    <img src="https://picsum.photos/seed/candidate4/200/200.jpg" alt="Candidate" class="featured-candidate-image">
+                    <div class="featured-candidate-info">
+                        <div class="featured-candidate-name">Nusrat Jahan</div>
+                        <div class="featured-candidate-post">Treasurer</div>
+                        <div class="featured-candidate-stats">
+                            <div class="featured-stat"><i class="fas fa-heart"></i> 65</div>
+                            <div class="featured-stat"><i class="fas fa-thumbs-up"></i> 54</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="stats-section">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <i class="fas fa-users stat-icon"></i>
+                    <div class="stat-value">142</div>
+                    <div class="stat-label">Total Candidates</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-poll stat-icon"></i>
+                    <div class="stat-value">24</div>
+                    <div class="stat-label">Active Polls</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-comments stat-icon"></i>
+                    <div class="stat-value">1.2K</div>
+                    <div class="stat-label">Discussions</div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-chart-line stat-icon"></i>
+                    <div class="stat-value">89%</div>
+                    <div class="stat-label">Engagement Rate</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="daily-polls">
+            <div class="results-info">
+                <span>Showing results for VP Candidates from the 2014-15 Session</span>
+                <span class="results-count">12 candidates found</span>
+            </div>
+            
+            <h2 class="section-title">Today's Polls</h2>
+            <div class="polls-container">
+                <div class="poll-card">
+                    <h3 class="poll-question">Which issue should be the top priority for the next DUCSU leadership?</h3>
+                    <div class="poll-options">
+                        <label class="poll-option">
+                            <input type="radio" name="priority-issue" value="facilities">
+                            <span>Campus Facilities</span>
+                        </label>
+                        <label class="poll-option">
+                            <input type="radio" name="priority-issue" value="academic">
+                            <span>Academic Support</span>
+                        </label>
+                        <label class="poll-option">
+                            <input type="radio" name="priority-issue" value="extracurricular">
+                            <span>Extracurricular Activities</span>
+                        </label>
+                        <label class="poll-option">
+                            <input type="radio" name="priority-issue" value="representation">
+                            <span>Student Representation</span>
+                        </label>
+                    </div>
+                    <button class="poll-vote-btn">Vote Now</button>
+                </div>
+                
+                <div class="poll-card">
+                    <h3 class="poll-question">How satisfied are you with the current student leadership?</h3>
+                    <div class="poll-options">
+                        <label class="poll-option">
+                            <input type="radio" name="satisfaction" value="very">
+                            <span>Very Satisfied</span>
+                        </label>
+                        <label class="poll-option">
+                            <input type="radio" name="satisfaction" value="somewhat">
+                            <span>Somewhat Satisfied</span>
+                        </label>
+                        <label class="poll-option">
+                            <input type="radio" name="satisfaction" value="neutral">
+                            <span>Neutral</span>
+                        </label>
+                        <label class="poll-option">
+                            <input type="radio" name="satisfaction" value="dissatisfied">
+                            <span>Dissatisfied</span>
+                        </label>
+                    </div>
+                    <button class="poll-vote-btn">Vote Now</button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="candidates-section">
+            <div class="candidates-grid">
+                <div class="candidate-card">
+                    <div class="candidate-header">
+                        <img src="https://picsum.photos/seed/candidate1/200/200.jpg" alt="Candidate" class="candidate-image">
+                        <div class="candidate-info">
+                            <h3>Ahmed Rahman</h3>
+                            <p>Progressive Students' Alliance</p>
+                        </div>
+                    </div>
+                    <div class="candidate-reactions">
+                        <div class="reaction heart">
+                            <i class="fas fa-heart"></i>
+                            <span class="reaction-count">124</span>
+                        </div>
+                        <div class="reaction thumbs-up">
+                            <i class="fas fa-thumbs-up"></i>
+                            <span class="reaction-count">89</span>
+                        </div>
+                        <div class="reaction thumbs-down">
+                            <i class="fas fa-thumbs-down"></i>
+                            <span class="reaction-count">12</span>
+                        </div>
+                    </div>
+                    <div class="candidate-details">
+                        <div><span>Post:</span> President</div>
+                        <div><span>Session:</span> 2022-23</div>
+                        <div><span>Hall:</span> Salahuddin Hall</div>
+                        <div><span>Department:</span> Computer Science</div>
+                    </div>
+                </div>
+                
+                <div class="candidate-card">
+                    <div class="candidate-header">
+                        <img src="https://picsum.photos/seed/candidate2/200/200.jpg" alt="Candidate" class="candidate-image">
+                        <div class="candidate-info">
+                            <h3>Fatima Khan</h3>
+                            <p>Student Rights Panel</p>
+                        </div>
+                    </div>
+                    <div class="candidate-reactions">
+                        <div class="reaction heart">
+                            <i class="fas fa-heart"></i>
+                            <span class="reaction-count">98</span>
+                        </div>
+                        <div class="reaction thumbs-up">
+                            <i class="fas fa-thumbs-up"></i>
+                            <span class="reaction-count">76</span>
+                        </div>
+                        <div class="reaction thumbs-down">
+                            <i class="fas fa-thumbs-down"></i>
+                            <span class="reaction-count">15</span>
+                        </div>
+                    </div>
+                    <div class="candidate-details">
+                        <div><span>Post:</span> Vice President</div>
+                        <div><span>Session:</span> 2022-23</div>
+                        <div><span>Hall:</span> Fazlul Haq Hall</div>
+                        <div><span>Department:</span> Physics</div>
+                    </div>
+                </div>
+                
+                <div class="candidate-card">
+                    <div class="candidate-header">
+                        <img src="https://picsum.photos/seed/candidate3/200/200.jpg" alt="Candidate" class="candidate-image">
+                        <div class="candidate-info">
+                            <h3>Rahim Islam</h3>
+                            <p>Independent</p>
+                        </div>
+                    </div>
+                    <div class="candidate-reactions">
+                        <div class="reaction heart">
+                            <i class="fas fa-heart"></i>
+                            <span class="reaction-count">76</span>
+                        </div>
+                        <div class="reaction thumbs-up">
+                            <i class="fas fa-thumbs-up"></i>
+                            <span class="reaction-count">65</span>
+                        </div>
+                        <div class="reaction thumbs-down">
+                            <i class="fas fa-thumbs-down"></i>
+                            <span class="reaction-count">8</span>
+                        </div>
+                    </div>
+                    <div class="candidate-details">
+                        <div><span>Post:</span> General Secretary</div>
+                        <div><span>Session:</span> 2023-24</div>
+                        <div><span>Hall:</span> Shahidullah Hall</div>
+                        <div><span>Department:</span> English</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>© 2025 DUCSU Connect. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
